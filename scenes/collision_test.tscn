@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dqcxwg5b21e51"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(153.809, 199)
+scale = Vector2(2.10294, 1)
+polygon = PackedVector2Array(43.3636, -76, 95.6713, 12, 67.1399, -24, 57, 6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(245, 123, 273, 204, 295, 175, 356, 212)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(-8, 275)
+scale = Vector2(2.10294, 1)
+polygon = PackedVector2Array(43.3636, -76, 95.6713, 12, 67.1399, -24, -0.475525, -105)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 171, 84, 199, 194, 287)

@@ -1,0 +1,141 @@
+[gd_scene load_steps=18 format=3 uid="uid://dt3fpuvmuhya1"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_eltww"]
+[ext_resource type="PackedScene" uid="uid://87btueex3qof" path="res://scenes/egg.tscn" id="2_ll56c"]
+[ext_resource type="PackedScene" uid="uid://d2a74b1tlxw8i" path="res://scenes/bird.tscn" id="3_25wr8"]
+[ext_resource type="Texture2D" uid="uid://mxkygtve6tth" path="res://art/back.png" id="3_kapjw"]
+[ext_resource type="PackedScene" uid="uid://0uprtu1hwxwi" path="res://scenes/power_bone.tscn" id="3_ustvj"]
+[ext_resource type="PackedScene" uid="uid://da2oov6kdc8re" path="res://scenes/hud.tscn" id="4_4h5xu"]
+[ext_resource type="PackedScene" uid="uid://bgmjgmfyk4rt0" path="res://scenes/dog.tscn" id="4_jtb4w"]
+[ext_resource type="PackedScene" uid="uid://yxv17e074g77" path="res://scenes/floor.tscn" id="5_wk03l"]
+[ext_resource type="PackedScene" uid="uid://b4p5runow4usb" path="res://scenes/walls.tscn" id="7_dqpdo"]
+[ext_resource type="PackedScene" uid="uid://bh1g5htb7w3ig" path="res://scenes/touch_controls.tscn" id="10_j5bf7"]
+
+[sub_resource type="Curve2D" id="Curve2D_r72ce"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 60, -14, 0, 0, 0, 0, 367, -20)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_okow4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -37, 620, 0, 0, 0, 0, 469, 64)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_grrlu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 468, 580, 0, 0, 0, 0, -67, 77)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_sr1u0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -51, 352, 0, 0, 0, 0, 492, 359)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_sqdvy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 488, 343, 0, 0, 0, 0, -51, 331)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_633nf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -54, 66, 0, 0, 0, 0, 480, 536)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_sr3el"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 463, 51, 0, 0, 0, 0, -49, 582)
+}
+point_count = 2
+
+[node name="Main" type="Node"]
+script = ExtResource("1_eltww")
+egg_scene = ExtResource("2_ll56c")
+bird_scene = ExtResource("3_25wr8")
+powerBone_scene = ExtResource("3_ustvj")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_kapjw")
+
+[node name="Floor" parent="." instance=ExtResource("5_wk03l")]
+position = Vector2(213, 670)
+
+[node name="Walls" parent="." instance=ExtResource("7_dqpdo")]
+
+[node name="Dog" parent="." instance=ExtResource("4_jtb4w")]
+position = Vector2(220, 546)
+
+[node name="DogStartPosition" type="Marker2D" parent="."]
+position = Vector2(195, 693)
+
+[node name="ObjTimer" type="Timer" parent="."]
+wait_time = 1.511
+
+[node name="ObjSpawner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r72ce")
+
+[node name="ObjSpawnLocation" type="PathFollow2D" parent="ObjSpawner"]
+position = Vector2(60, -14)
+rotation = -0.0195415
+
+[node name="HUD" parent="." instance=ExtResource("4_4h5xu")]
+
+[node name="BoneTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BirdPath1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_okow4")
+
+[node name="BirdFollowPath" type="PathFollow2D" parent="BirdPath1"]
+position = Vector2(-37, 620)
+rotation = -0.832444
+
+[node name="BirdPath2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_grrlu")
+
+[node name="BirdFollowPath" type="PathFollow2D" parent="BirdPath2"]
+position = Vector2(468, 580)
+rotation = -2.38701
+
+[node name="BirdPath3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sr1u0")
+
+[node name="BirdFollowPath" type="PathFollow2D" parent="BirdPath3"]
+position = Vector2(-51, 352)
+rotation = 0.0128906
+
+[node name="BirdPath4" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sqdvy")
+
+[node name="BirdFollowPath" type="PathFollow2D" parent="BirdPath4"]
+position = Vector2(488, 343)
+rotation = -3.11933
+
+[node name="BirdPath5" type="Path2D" parent="."]
+curve = SubResource("Curve2D_633nf")
+
+[node name="BirdFollowPath" type="PathFollow2D" parent="BirdPath5"]
+position = Vector2(-54, 66)
+rotation = 0.721739
+
+[node name="BirdPath6" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sr3el")
+
+[node name="BirdFollowPath" type="PathFollow2D" parent="BirdPath6"]
+position = Vector2(463, 51)
+rotation = 2.33798
+
+[node name="Touch Controls" parent="." instance=ExtResource("10_j5bf7")]
+
+[connection signal="egg_on_floor" from="Floor" to="." method="_on_floor_egg_on_floor"]
+[connection signal="hit_basket" from="Dog" to="." method="_on_dog_hit_basket"]
+[connection signal="timeout" from="ObjTimer" to="." method="_on_obj_timer_timeout"]
+[connection signal="start" from="HUD" to="." method="_on_hud_start"]
+[connection signal="timeout" from="BoneTimer" to="." method="_on_bone_timer_timeout"]

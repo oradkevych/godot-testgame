@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://87btueex3qof"]
+
+[ext_resource type="Script" path="res://scripts/egg.gd" id="1_1plbl"]
+[ext_resource type="Texture2D" uid="uid://brmos7dijtwv2" path="res://art/egg/egg.png" id="2_oeiei"]
+[ext_resource type="Texture2D" uid="uid://bmwvr2xyqxqjv" path="res://art/egg/egg2.png" id="3_kxflk"]
+[ext_resource type="Texture2D" uid="uid://dkw0aby1vuimx" path="res://art/egg/egg3.png" id="4_ih5wd"]
+[ext_resource type="Texture2D" uid="uid://bc3hmsskmcxnv" path="res://art/egg/egg4.png" id="5_30jxw"]
+[ext_resource type="Texture2D" uid="uid://dxdaquiyy3m08" path="res://art/egg/egg5.png" id="6_452i8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ud6f"]
+bounce = 0.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr7uw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oeiei")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kxflk")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ih5wd")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_30jxw")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_452i8")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vf0el"]
+radius = 13.0
+height = 32.0
+
+[node name="Egg" type="RigidBody2D" groups=["Eggs", "Objects"]]
+position = Vector2(232, 463)
+collision_layer = 2
+collision_mask = 11
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_6ud6f")
+gravity_scale = 0.01
+script = ExtResource("1_1plbl")
+metadata/_edit_group_ = true
+
+[node name="EggSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(40, 3.00002)
+scale = Vector2(1.5, 1.53906)
+sprite_frames = SubResource("SpriteFrames_wr7uw")
+animation = &"5"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(39.5, -8.25)
+scale = Vector2(1.05, 1.675)
+
+[node name="EggCollision" type="CollisionShape2D" parent="."]
+position = Vector2(39, -7)
+shape = SubResource("CapsuleShape2D_vf0el")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

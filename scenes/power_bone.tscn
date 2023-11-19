@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://0uprtu1hwxwi"]
+
+[ext_resource type="Texture2D" uid="uid://dxqo6iae1qfas" path="res://art/bone.png" id="1_kf22s"]
+[ext_resource type="Script" path="res://scenes/power_bone.gd" id="1_rw458"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m2c3i"]
+height = 34.0
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["Bone", "Objects", "Power"]]
+position = Vector2(2, -2)
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_rw458")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kf22s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_m2c3i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

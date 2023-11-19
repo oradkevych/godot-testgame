@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh1g5htb7w3ig"]
+
+[ext_resource type="Texture2D" uid="uid://pq036ru1a3r8" path="res://art/control-left.png" id="1_h0db4"]
+[ext_resource type="Texture2D" uid="uid://byrmvpl3hofoc" path="res://art/control-right.png" id="2_rfeus"]
+
+[node name="Touch Controls" type="Node2D"]
+
+[node name="Left" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+position = Vector2(-15, -2)
+scale = Vector2(3.5, 11.3281)
+texture_normal = ExtResource("1_h0db4")
+shape_centered = false
+shape_visible = false
+action = "move_left"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+position = Vector2(213, 4)
+scale = Vector2(3.29688, 11.1875)
+texture_normal = ExtResource("2_rfeus")
+action = "move_right"

@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://da2oov6kdc8re"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_g6bvh"]
+[ext_resource type="FontFile" uid="uid://b1jspi527n1ai" path="res://fonts/Xolonium-Regular.ttf" id="2_mhynr"]
+[ext_resource type="Texture2D" uid="uid://dxqo6iae1qfas" path="res://art/bone.png" id="3_w7rvj"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_op68i"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_unwed"]
+events = [SubResource("InputEventAction_op68i")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_g6bvh")
+
+[node name="Score" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -15.0
+offset_right = 15.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_mhynr")
+theme_override_font_sizes/font_size = 36
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -27.5
+offset_right = 125.5
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_mhynr")
+theme_override_font_sizes/font_size = 43
+text = "Cathch the Eggs!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 57.0
+offset_right = 78.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_mhynr")
+shortcut = SubResource("Shortcut_unwed")
+text = "Start"
+
+[node name="EndScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 30.0
+offset_right = 20.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_mhynr")
+
+[node name="LabelBoneTime" type="Label" parent="."]
+offset_left = 30.0
+offset_top = 7.0
+offset_right = 70.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_mhynr")
+text = "0"
+
+[node name="BoneSprite" type="Sprite2D" parent="."]
+position = Vector2(13, 17)
+texture = ExtResource("3_w7rvj")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

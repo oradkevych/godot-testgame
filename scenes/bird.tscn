@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2a74b1tlxw8i"]
+
+[ext_resource type="Script" path="res://scenes/bird.gd" id="1_lqivq"]
+[ext_resource type="Texture2D" uid="uid://dwikqjgxdtkb2" path="res://art/bird/bird1.png" id="2_ky6at"]
+[ext_resource type="Texture2D" uid="uid://cudjpunb5ysmq" path="res://art/bird/bird2.png" id="3_gseo6"]
+[ext_resource type="Texture2D" uid="uid://daohp508mfu3u" path="res://art/bird/bird3.png" id="4_n4xyv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2252v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ky6at")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gseo6")
+}, {
+"duration": 4.0,
+"texture": ExtResource("4_n4xyv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["Objects"]]
+position = Vector2(41, 27)
+collision_layer = 8
+collision_mask = 0
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_lqivq")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-35, -30)
+polygon = PackedVector2Array(117, 74, 100, 73, 88, 64, 87, 53, 92, 46, 95, 35, 122, 35, 122, 35, 127, 27, 142, 28, 146, 37, 150, 40, 150, 43, 145, 43, 143, 47, 141, 56, 134, 64)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(82.5, 27)
+scale = Vector2(3.25, 3.15)
+
+[node name="BirdAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(83, 29)
+sprite_frames = SubResource("SpriteFrames_2252v")
+frame_progress = 0.512702
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
